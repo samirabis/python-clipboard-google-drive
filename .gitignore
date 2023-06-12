@@ -1,5 +1,4 @@
 # .gitignore
-.env
 env/
 app/client_secrets.json
 __pycache__/
