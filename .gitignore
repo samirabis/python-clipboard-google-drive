@@ -1,2 +1,8 @@
+# .gitignore
 .env
 env/
+app/client_secrets.json
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
