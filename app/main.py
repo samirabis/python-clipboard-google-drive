@@ -1,5 +1,5 @@
-from app.clipboard_monitor import start_clipboard_monitor
-from app.drive_uploader import DriveUploader
+from clipboard_monitor import start_clipboard_monitor
+from drive_uploader import DriveUploader
 from pystray import MenuItem as item, Icon as icon
 from PIL import Image
 
