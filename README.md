@@ -12,7 +12,7 @@ This script requires the following Python packages:
 You can install them using pip:
 
 ```shell
-pip install pydrive pyperclip python-dotenv pillow
+pip install pydrive pyperclip pillow
 ```
 
 ## Google Drive Setup
