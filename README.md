@@ -36,4 +36,4 @@ python app/main.py
 The script will now start monitoring your clipboard. Whenever you copy an image to your clipboard, it will be automatically uploaded to the specified Google Drive folder.
 
 ## License
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT](/LICENSE.txt)
