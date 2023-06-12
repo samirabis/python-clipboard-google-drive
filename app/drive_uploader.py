@@ -7,18 +7,35 @@ import tempfile
 import datetime
 import time
 import os
+import pickle
 
 load_dotenv()
 
 
 class DriveUploader:
     def __init__(self):
-        gauth = GoogleAuth()
-        gauth.LoadClientConfigFile(
-            "app/client_secrets.json"
-        )  # Replace with the full path to your client_secrets.json file
-        gauth.LocalWebserverAuth()  # Creates local webserver and auto handles authentication
-        self.drive = GoogleDrive(gauth)
+        self.gauth = GoogleAuth()
+        self.gauth.LoadClientConfigFile("app/client_secrets.json")
+
+        # Check if credentials exist in pickle file
+        if os.path.exists("token.pickle"):
+            with open("token.pickle", "rb") as token:
+                self.gauth.credentials = pickle.load(token)
+
+        if self.gauth.credentials is None or self.gauth.credentials.invalid:
+            if (
+                self.gauth.credentials
+                and self.gauth.credentials.expired
+                and self.gauth.credentials.refresh_token
+            ):
+                self.gauth.Refresh()
+            else:
+                self.gauth.LocalWebserverAuth()
+            # Save the credentials for the next run
+            with open("token.pickle", "wb") as token:
+                pickle.dump(self.gauth.credentials, token)
+
+        self.drive = GoogleDrive(self.gauth)
         self.folder_id = self.find_or_create_folder("Snippets")
         self.last_temp_file = None
 
@@ -35,6 +52,13 @@ class DriveUploader:
             )
             folder.Upload()
             return folder["id"]
+
+    def deauthenticate(self):
+        if os.path.exists("token.pickle"):
+            os.remove("token.pickle")
+            print("Deauthentication successful.")
+        else:
+            print("No existing authentication found.")
 
     def upload_file(self, file_data, file_name):
         """
