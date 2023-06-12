@@ -2,4 +2,3 @@ pydrive
 pystray
 pillow
 pyperclip
-python-dotenv
