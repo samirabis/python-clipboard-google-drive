@@ -7,7 +7,6 @@ This script requires the following Python packages:
 
 - pydrive
 - pyperclip
-- python-dotenv
 - Pillow
 
 You can install them using pip:
