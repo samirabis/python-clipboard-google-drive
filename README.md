@@ -27,14 +27,6 @@ Before using this script, you need to set up a `client_secrets.json` file:
 
 Move the `client_secrets.json` to the `app` directory.
 
-## Environment Variables
-The script uses a `.env` file to manage environment variables. Please create a `.env` file in the root directory of this project and add the following variables:
-
-```shell
-# .env
-GOOGLE_DRIVE_FOLDER_NAME="Snippets"
-```
-
 ## Usage
 To start the script:
 
